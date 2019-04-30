@@ -6,9 +6,8 @@ namespace Testing
 {
     [CustomEditor(typeof(TestScript))]
     public class TestScriptEditor : Editor
-    {
-        SerializedProperty property;
-        public EditorGUILayout.FadeGroupScope group;       
+    {      
+        private EditorGUILayout.FadeGroupScope group;       
         public override void OnInspectorGUI()
         {
             TestScript testScriptInstance = (TestScript)target;
@@ -26,7 +25,7 @@ namespace Testing
                 }
             }
 
-            testScriptInstance.canDisable = GUILayout.Toggle(testScriptInstance.canDisable, "Disable Name");
+            testScriptInstance.canDisable = EditorGUILayout.Toggle(testScriptInstance.canDisable, "Disable Name");
             EditorGUI.BeginDisabledGroup(testScriptInstance.canDisable);
             testScriptInstance.testName = EditorGUILayout.TextField("Test Name", testScriptInstance.testName);           
             EditorGUI.EndDisabledGroup();           
